@@ -83,3 +83,4 @@ env.php
 # Project specific
 /storage/
 /*.local
+bunker-game/backend/config/env.php
