@@ -14,3 +14,9 @@ RewriteRule ^api/(.*)$ backend/api/$1.php [QSA,L]
 Header set Access-Control-Allow-Origin "*"
 Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE"
 Header set Access-Control-Allow-Headers "Content-Type"
+
+# Запрет доступа к env файлам
+<FilesMatch "\.(env|env\.php|example\.php)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>

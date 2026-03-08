@@ -1,10 +1,18 @@
 <?php
-// backend/config/database.php
 class Database {
     private static $instance = null;
     private $connection;
     
     private function __construct() {
+        if (!getenv('DEEPSEEK_API_KEY')) {
+            // Для разработки покажем ошибку, в продакшене - залогируем
+            if (getenv('APP_ENV') === 'development') {
+                die('Ошибка: файл конфигурации не найден. Скопируйте env.example.php в env.php');
+            } else {
+                error_log('Configuration file missing');
+                die('Ошибка конфигурации сервера');
+            }
+        }
         $host = 'localhost';
         $dbname = 'bunker_game';
         $username = 'root';
